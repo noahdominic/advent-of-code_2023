@@ -10,6 +10,8 @@ total = 0
 limits = {"red": 12, "green": 13, "blue": 14}
 
 with open(file_path, newline='') as csvfile:
+    
+    # I literally don't have to do this.  The semicolon is lowkey useless.
     csv_reader = csv.reader(csvfile, delimiter=';')
     
     for i, row in enumerate(csv_reader):
