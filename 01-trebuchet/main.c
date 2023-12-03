@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#define MODE 1 // `1` for Part 1 mode, `2` for Part 2
 #define START 0
 #define STATE_O 1
 #define STATE_ON 2
@@ -233,6 +234,10 @@ int process_file(FILE *file) {
         break;
       }
 
+      if (MODE == 1) {
+        continue;
+      }
+
       StateMachine_functions(&status, line[i]);
 
       if (status < 0) {
@@ -247,6 +252,10 @@ int process_file(FILE *file) {
       if (line[i] >= '0' && line[i] <= '9') {
         // Overwrite idx_r if another digit is found
         int_r = line[i] - '0';
+      }
+
+      if (MODE == 1) {
+        continue;
       }
 
       StateMachine_functions(&status, line[i]);
