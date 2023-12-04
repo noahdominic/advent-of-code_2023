@@ -1,2 +1,4 @@
+CC=clang
+
 default:
-	cc -std=c11 main.c -o out
+	${CC} -std=c11 main.c -o out
