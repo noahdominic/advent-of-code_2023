@@ -64,7 +64,8 @@ process_file(FILE *file)
         char *token = strtok(seeds_line, "sed: ");
 
         while (token != NULL) {
-                seeds[seed_count] = (unsigned int)strtoul(token, &p_endpoint, 10);
+                seeds[seed_count] = 
+                        (unsigned int)strtoul(token, &p_endpoint, 10);
                 seed_count++;
                 token = strtok(NULL, " ");
         }
