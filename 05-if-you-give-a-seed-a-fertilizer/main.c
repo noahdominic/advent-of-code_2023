@@ -137,7 +137,7 @@ process_file(FILE *file)
                             map_item_count[j], result );
                 }
 
-                if (num_is_a_seed(seeds, seed_count, result ) == 1) {
+                if (num_is_a_seed(seeds, seed_count, result )) {
                         minloc = candidate_loc;
                         break;
                 }
