@@ -7,7 +7,8 @@
 #define MAX_LINE_CHARS                     500
 #define MAX_MAPS                             7
 #define MAX_MAP_ITEMS                      100
-#define SOME_LARGE_NUMBER             90168667
+#define SEARCH_RANGE_START              314159
+#define SEARCH_RANGE_END              50000000
 
 int num_is_a_seed(const unsigned int arr[], const int size, 
     const unsigned int x);
@@ -129,8 +130,9 @@ process_file(FILE *file)
          * Deduce seed from generated locations for Part TWO - Reverse pass
          */
         minloc = UINT_MAX;
-        for (unsigned int candidate_loc = 0; candidate_loc < SOME_LARGE_NUMBER;
-             candidate_loc++) {
+        for (unsigned int candidate_loc = SEARCH_RANGE_START; 
+            candidate_loc < SEARCH_RANGE_END;
+            candidate_loc++) {
                 unsigned int result  = candidate_loc;
                 for (int j = map_count - 1; j >= 0; j--) {
                         result  = reverse_step(dest[j], src[j], length[j],
