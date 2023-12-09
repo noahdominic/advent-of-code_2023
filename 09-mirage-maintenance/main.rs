@@ -4,7 +4,7 @@ use std::io::{BufRead, BufReader};
 fn get_next(sequence: &mut Vec<i32>) -> i32 {
     let mut sum = 0;
     while !sequence.iter().all(|&x| x == 0) {
-        sum += sequence[sequence.len() - 1];
+        sum += sequence.last().unwrap_or(&0);
         *sequence = sequence
             .iter()
             .enumerate()
