@@ -23,18 +23,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             total += row_symm * 100;
         } else if let Some(col_symm) = find_axis_of_symmetry(&cols) {
             total += col_symm;
-        } else {
-            return Err("HUH???".into());
         }
 
         if let Some(row_symm) = fuzzy_find_axis_of_symmetry(&rows) {
             total2 += row_symm * 100;
         } else if let Some(col_symm) = fuzzy_find_axis_of_symmetry(&cols) {
             total2 += col_symm;
-        } else {
-            return Err("????".into());
         }
     }
+
     println!("{}", total);
     println!("{}", total2);
 
@@ -69,8 +66,7 @@ fn fuzzy_find_axis_of_symmetry(vector: &Vec<String>) -> Option<usize> {
 
     for idx in 1..length {
         let mut fuzzy_flag = true;
-        let mut i = idx;
-        let mut j = idx - 1;
+        let (mut i, mut j) = (idx, idx - 1);
         let mut acc = 0;
 
         while i < length && fuzzycmp(vector[i].as_str(), vector[j].as_str(), &mut fuzzy_flag) {
@@ -78,16 +74,16 @@ fn fuzzy_find_axis_of_symmetry(vector: &Vec<String>) -> Option<usize> {
             if !fuzzy_flag {
                 if i == length - 1 {
                     return Some(length - acc);
-                }
-                if j == 0 {
+                } else if j == 0 {
                     return Some(acc);
                 }
+            } else {
+                if i == length - 1 || j == 0 {
+                    break;
+                }
             }
+
             i += 1;
-            if j == 0 {
-                // bruh
-                break;
-            }
             j -= 1;
         }
     }
